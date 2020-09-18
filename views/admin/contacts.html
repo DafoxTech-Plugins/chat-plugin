@@ -1,0 +1,38 @@
+<div class="contacts-bar" style="z-index:999">
+  <h3>Customers</h3>
+  <hr>
+  <form>
+    <div class="input-group">
+      <input type="search" name="search" ng-model="search" ng-change="searchContacts(search)" placeholder="Search" class="form-control">
+    </div>
+  </form>
+  <div class="list">
+    <ul>
+      <li ng-repeat="contact in devices">
+        <a href="javascript:void(0)" ng-click="focusChat(contact)">
+          <strong>{{contact.hostname || contact.mac_address}}</strong>
+
+          <!-- <span ng-if="!contact.has_unread && contact.active" style="font-size: 24px;color: green;">◉</span> -->
+
+          <span ng-show="contact.has_unread" class="fa fa-asterisk" style="color: #e85656"></span>
+        </a>
+      </li>
+      <li ng-if="has_more">
+        <a href="javascript:void(0)" ng-click="loadMore()">
+          <strong> Load more ...</strong>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <form style="position:absolute; bottom:1px; padding: 8px;right:1px;" ng-submit="messageAll($event)">
+    <hr>
+    <div class="input-group">
+      <textarea required name="msg_all" ng-model="msg_all" placeholder="Message for all ..." class="form-control" rows="1"></textarea>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" style="z-index:3" ng-disabled='sending'>
+          {{sending? 'Sending .... ': 'Send To All'}}
+        </button>
+      </span>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-12">
+    <div
+      ba-panel
+      ba-panel-title="Chat Plugin Settings"
+      ba-panel-class="with-scroll"
+      class="chat-plugin"
+      >
+      <form name='form' ng-submit="submit()">
+        <div class="row">
+          <div class="col-md-4">
+            <label>APK Download Prompt:</label>
+            <textarea class="form-control" ng-model="$parent.apk_download_prompt" required></textarea>
+          </div>
+        </div>
+        <br/>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                Apk:
+                <a href="javascript:void(0)" ng-click='resetApk()'>Restore default</a>
+              </label>
+              
+              <div>
+                <select ng-model="$parent.apk_type">
+                  <option value="upload_file">Upload APK File</option>
+                  <option value="link">Set APK Link</option>
+                </select>
+              </div>
+              <br/>
+              <div ng-show="$parent.apk_type=='upload_file'">
+                <input type="file" accept=".apk" ngf-max-size="8MB" class="form-control" ng-model="apk_file" ngf-select="uploadApk(apk_file)" name="apk_file">
+                
+                <div class="help-info" style='margin-top:5px'>
+                  <label>
+                    Current:
+                  </label>
+                  <a ng-href="{{$parent.apk_link}}" target="_blank">{{$parent.apk_link}}</a>
+                </div>
+              </div>
+              
+              <div ng-show="$parent.apk_type=='link'">
+                <label>APK Link:</label>
+                <input type="text" class="form-control" ng-model="$parent.apk_link" required/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-demo checkbox-demo">
+              <label class="checkbox-inline custom-checkbox nowrap">
+                <input type="checkbox" ng-model="$parent.hide_portal_button">
+                <span>
+                  Hide icon in Captive Portal
+                  <i>(Temporary disable portal chat)</i>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>

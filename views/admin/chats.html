@@ -1,0 +1,77 @@
+<div class="chat-plugin chats" style="z-index: 999">
+  <a href="javascript:void(0)" ng-click="closeChat()" class="close-chat">
+    <i class="fa fa-close"></i>
+  </a>
+  <!-- <a href="javascript:void(0)" class="chat-options">
+  </a> -->
+
+  <div class="dropdown pull-right">
+    <a class="dropdown-toggle chat-options" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <i class="fa fa-ellipsis-h"></i>
+    </a>
+    <ul class="dropdown-menu" style="margin-left:-180px">
+      <li>
+        <a href="javascript:void(0)" ng-click="deleteConversation()" ladda="deleting" ng-disabled="chats.length <= 0">
+          <i class="fa fa-trash">&nbsp;</i>
+          Delete conversation
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" ng-click="muteDevice(contact)" ladda="deleting" ng-if="!contact.is_muted">
+          <i class="fa fa-volume-off">&nbsp;</i>
+          Mute Device
+        </a>
+        <a href="javascript:void(0)" ng-click="unmuteDevice(contact)" ladda="deleting" ng-if="contact.is_muted">
+          <i class="fa fa-volume-up">&nbsp;</i>
+          Unmute Device
+        </a>
+      </li>
+      <!-- <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Separated link</a></li> -->
+    </ul>
+  </div>
+
+  <h3>{{ contact.hostname || contact.mac_address }} {{contact.ip_address?"("+contact.ip_address+")": '' }}</h3>
+  <hr>
+  <div class="conversation device-{{contact.id}}">
+    <ul style="list-style:none">
+      <li ng-if="loadingMessages">
+        <div class="message" style="border-radius: 5px;">
+          <div class="text">Loading messages ...</div>
+        </div>
+      </li>
+
+      <li ng-if="!loadingMessages && chats.length <= 0">
+        <div class="message placeholder" style="border-radius: 5px;">
+          <center class="text"> - No messages - </center>
+        </div>
+      </li>
+
+      <li ng-if="has_more">
+        <a class="message" style="border-radius: 5px; display: inline-block; width: 100%; text-align: center;" ng-click="loadMore()">
+          <span class="text">Load more ...</span>
+        </a>
+      </li>
+
+      <li ng-if="!loadingMessages" ng-repeat="chat in chats track by $index">
+        <div class="message {{ chat.sender_id == contact.id ? 'received' : 'sent' }}">
+          <strong class="sender"> {{ chat.sender_id == contact.id ? (contact.hostname || contact.mac_address)  : ("You (" + chat.admin_username + ")") }}</strong>
+          <br/>
+          <pre class="text">{{ chat.message }}</pre>
+          <small class="time"> {{ chat.created_at | date:'medium'}} </small>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <form style="position:absolute; bottom:1px; padding: 8px;right:1px;" ng-submit="send($event)">
+    <hr>
+    <div class="input-group">
+      <textarea required name="msg" ng-model="msg" placeholder="Message ..." class="form-control" rows="1"></textarea>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" style="z-index:3" ladda="sending">Send</button>
+      </span>
+    </div>
+  </form>
+</div>
