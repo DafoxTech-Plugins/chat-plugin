@@ -88,8 +88,6 @@ function initChatBox(){
   el.style.height = height+"px"
 
   var textarea = document.querySelector(".chat-plugin .send-msg-con textarea")
-  var sendBtn = document.querySelector(".chat-plugin .send-icon")
-  sendBtn.style.width = '58px'
   var twidth = width - 58
   textarea.style.width = twidth+'px'
   textarea.style.maxWidth = twidth+'px'
@@ -167,18 +165,15 @@ function notify(msg) {
 }
 
 function animateIcon(with_sound){
-  var icon = document.querySelector('.main-icon')
-  icon.style.width = "20px"
-  icon.style.height = "20px"
+  var icon = document.querySelector('.main-icon i.fa')
   var max = 60
-  var i = 20
+  var i = 1
   var interval = setInterval(function(){
     i += 1
-    icon.style.width = i+"px"
-    icon.style.height = i+"px"
+    icon.style['font-size'] = i+"px"
     if(i >= max)
       clearInterval(interval);
-  })
+  }, 3)
 
   if(with_sound){
     if(audio)
@@ -374,7 +369,8 @@ function loadMore(el){
   })
 }
 
-function sendMessage(){
+function sendMessage(e){
+  e.preventDefault()
   var input = document.querySelector('#chat_message')
   var msg = input.value
   input.value = ""
@@ -385,6 +381,7 @@ function sendMessage(){
       disconnected()
     }
   }, 3000)
+  return false
 }
 
 function promptAppInstallation(){

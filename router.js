@@ -4,7 +4,7 @@ var core = require('../core')
 var { router, middlewares } = core
 var devices_ctrl = require('./controllers/devices_ctrl')
 var chats_ctrl = require('./controllers/chats_ctrl')
-var { express, bodyParser, fileUpload } = middlewares
+var { express, bodyParser, fileUpload, ipv4, device_reg } = middlewares
 
 router.get('/chat-plugin/setting', chats_ctrl.getSettings)
 router.post('/chat-plugin/setting',
@@ -62,14 +62,15 @@ router.post('/chat-plugin/chats/:mobile_device_id/mark-read',
 
 router.delete('/chat-plugin/chats/:mobile_device_id', core.middlewares.auth, chats_ctrl.deleteConversation)
 
-router.get('/chat-plugin/portal/chats', chats_ctrl.getMessages)
+router.get('/chat-plugin/portal/chats', ipv4, device_reg, chats_ctrl.getMessages)
 router.post('/chat-plugin/portal/chat',
   express.urlencoded({ extended: true }),
   bodyParser.json(),
+  ipv4, device_reg,
   chats_ctrl.sendMessage
 )
 
-router.get('/chat-plugin/portal/mark-read', chats_ctrl.readAdminMessages)
+router.get('/chat-plugin/portal/mark-read', ipv4, device_reg, chats_ctrl.readAdminMessages)
 
 router.get('/client/notifications', devices_ctrl.getNotifications)
 

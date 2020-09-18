@@ -1,39 +1,35 @@
 <style>
   .chat-plugin .main-icon{
     position: fixed;
-    bottom: 16px;
-    right: 17px;
-    color: white;
+    bottom: 10px;
+    right: 0px;
+    color: #0183FF;
+    opacity:0.9;
     font-size: 30px;
     border-radius: 100%;
     text-decoration: none;
-    width: 20px;
-    height: 20px;
+    width:auto;
+    height:auto;
+    z-index: 99999;
   }
-  .chat-plugin .main-icon img.active{
-    display: none;
+  .chat-plugin .send-icon{
+    opacity: 0.6;
   }
-  .chat-plugin .send-icon img.active{
-    display: none;
-  }
-  .chat-plugin .main-icon img{
-    width: 100%;
+  .chat-plugin .main-icon .unread-indicator{
+    position:absolute;
+    right:18px;
+    color:red;
+    top:-10px;
+    font-weight: bold;
+    font-size:41px;
   }
   .chat-plugin .main-icon:hover, .chat-plugin .main-icon:active{
-    color: #1b867b;
+    opacity: 1 !important;
   }
-  .chat-plugin .main-icon:hover img.normal, .chat-plugin .main-icon:active img.normal{
-    display: none;
+  .chat-plugin .send-icon:hover, .chat-plugin .send-icon:active{
+    opacity: 1 !important;
   }
-  .chat-plugin .main-icon:hover img.active, .chat-plugin .main-icon:active img.active{
-    display: block;
-  }
-  .chat-plugin .send-icon:hover img.normal, .chat-plugin .send-icon:active img.normal{
-    display: none;
-  }
-  .chat-plugin .send-icon:hover img.active, .chat-plugin .send-icon:active img.active{
-    display: inline-block;
-  }
+
   .chat-plugin .chat-box{
     display: inline-block;
     position: fixed;
@@ -68,7 +64,7 @@
     background: white;
   }
   .chat-plugin .send-icon{
-    margin: 20px;
+    margin: 10px;
   }
   .chat-plugin .send-msg-con textarea{
     border-radius: 0;
@@ -123,9 +119,10 @@
 
 <div class="chat-plugin">
   <a href='javascript:void(0)' onclick="openChatBox()" class="main-icon">
-    <span class="unread-indicator" style="position:absolute;right:-1px;color:red;top:-19px;font-weight: bold;font-size:41px;display:none;">*</span>
-    <img src="/plugins/chat-plugin/assets/images/question.png" class="normal" alt="">
-    <img src="/plugins/chat-plugin/assets/images/question-o.png" class="active" alt="">
+    <span class="unread-indicator" style="display:none;">*</span>
+    <!-- <img src="/plugins/chat-plugin/assets/images/question.png" class="normal" alt=""> -->
+    <i class="fa fa-comments normal" style="font-size:0px;">&nbsp;</i>
+    <!-- <img src="/plugins/chat-plugin/assets/images/question-o.png" class="active" alt=""> -->
   </a>
   <div class='chat-box' style="display: none">
     <a onclick="closeChatBox()" href="javascript:void(0)" class='close'>
@@ -144,15 +141,24 @@
     </div>
 
     <div class="send-msg-con">
-      <form onsubmit="sendMessage()" class="form">
+      <form onsubmit="return sendMessage(event)" class="form">
         <div class="input-group">
           <textarea required name="message" id="chat_message" placeholder="Message ..." class="form-control" rows="1""></textarea>
-          <span class="input-group-btn">
-            <a href="javascript:void(0)" onclick="sendMessage()" class="send-icon">
-              <img src="/plugins/chat-plugin/assets/images/arrow-right.png" class="normal" alt="">
-              <img src="/plugins/chat-plugin/assets/images/arrow-right-o.png" class="active" alt="">
-            </a>
-          </span>
+          <button type="submit" class="input-group-btn" style="
+          margin: 4px;
+          min-width:45px;
+          border: none;
+          background: transparent;
+          outline: none;
+          font-size: 30px;
+          color: #209e91;
+          display:inline-block;
+          padding:0;
+          ">
+            <span class="send-icon">
+              <i class="fa fa-chevron-circle-right">&nbsp;</i>
+            </span>
+          </button>
         </div>
       </form>
     </div>
