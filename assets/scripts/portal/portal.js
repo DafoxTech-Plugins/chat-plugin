@@ -406,7 +406,7 @@ function promptAppInstallation(){
     if(!document.getElementById('chat-plugin')){
       var chat_plugin = document.createElement('div')
       chat_plugin.id = "chat-plugin"
-      httpGet("/plugins/chat-plugin/views/portal/chat.html", function(html){
+      httpGet("/plugins/chat-plugin/views/portal/chat.html?ref="+(new Date()).getMonth(), function(html){
         chat_plugin.innerHTML = html
         var body = document.querySelector("body")
         body.append(chat_plugin)
