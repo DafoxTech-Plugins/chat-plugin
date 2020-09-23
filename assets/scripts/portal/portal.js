@@ -415,7 +415,8 @@ function promptAppInstallation(){
   }, 1000)
 
   var i = setInterval(function(){
-    if(document.querySelector('.chat-box')){
+    var socket = Socket.getInstance()
+    if(document.querySelector('.chat-box') && socket){
       initSettings(function(){
         if(hide_portal_button){
           document.getElementById('chat-plugin').style.display = 'none';
