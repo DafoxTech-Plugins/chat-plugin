@@ -346,12 +346,16 @@ function initChats(){
 }
 
 var page = 1
+var loading_more = false
 function loadMore(el){
+  if(loading_more) return
   if(el && el.remove)
     el.remove()
 
   page += 1
+  loading_more = true
   httpGet(chats_api_url+'?page='+page, function(data){
+    loading_more = false
     data = JSON.parse(data)
     var _chats = data.chats
     if(!_chats || _chats.length <= 0) return

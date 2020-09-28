@@ -47,12 +47,17 @@
         })
       };
     }
+
+    var loading_more = false
     $scope.loadMore = function(){
+      if(loading_more) return
       $scope.page += 1
       var opts = {
         page: $scope.page
       }
+      loading_more = true
       ChatService.getClientMessages($scope.contact.id, opts).then(function(res){
+        loading_more = false
         var data = res.data || {}
         var chats = ((data.chats || []).reverse()).concat($scope.chats)
         $scope.chats = _.uniq(chats, function(i){ return i.id })
