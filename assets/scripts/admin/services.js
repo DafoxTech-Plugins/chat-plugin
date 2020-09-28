@@ -12,6 +12,7 @@
 
       this.getClientMessages = function (mobile_device_id, opts) {
         var query = !!opts? jQuery.param(opts) : ""
+        query = query +"&ref="+(Math.random())
         return $http.get('/chat-plugin/chats/'+mobile_device_id+'?'+query).catch(CatchHttpError);
       }
 

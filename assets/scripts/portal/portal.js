@@ -354,7 +354,7 @@ function loadMore(el){
 
   page += 1
   loading_more = true
-  httpGet(chats_api_url+'?page='+page, function(data){
+  httpGet(chats_api_url+'?page='+page+"&ref="+(Math.random()), function(data){
     loading_more = false
     data = JSON.parse(data)
     var _chats = data.chats
