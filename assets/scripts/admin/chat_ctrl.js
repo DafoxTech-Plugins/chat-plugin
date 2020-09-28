@@ -55,7 +55,7 @@
       ChatService.getClientMessages($scope.contact.id, opts).then(function(res){
         var data = res.data || {}
         var chats = ((data.chats || []).reverse()).concat($scope.chats)
-        $scope.chats = _.uniqBy(chats, function(i){ return i.id })
+        $scope.chats = _.uniq(chats, function(i){ return i.id })
         $scope.has_more = data.total_count > $scope.chats.length
       })
     }

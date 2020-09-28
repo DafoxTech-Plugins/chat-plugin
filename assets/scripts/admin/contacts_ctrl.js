@@ -38,7 +38,7 @@ function array_move(arr, old_index, new_index) {
       DevicesService.get(opts).then(function(res){
         var data = res.data || {}
         $scope.devices = $scope.devices.concat(data.devices)
-        $scope.devices = _.uniqBy($scope.devices, function(d){
+        $scope.devices = _.uniq($scope.devices, function(d){
           return d.id
         })
         $scope.has_more = data.devices.length > 0 && data.total_count > $scope.devices.length
