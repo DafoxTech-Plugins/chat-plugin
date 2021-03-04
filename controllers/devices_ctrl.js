@@ -115,6 +115,16 @@ exports.unmuteDevice = async(req, res, next)=>{
   }
 }
 
+exports.getUnreadDeviceIds = async(req, res, next)=>{
+  try{
+    var result = await core.dbi.models.Chat.findAll({ where: {is_read_by_admin: false}, distinct: true, attributes: ["mobile_device_id"] })
+    var mobile_device_ids = result.map(r => r.mobile_device_id)
+    res.json(mobile_device_ids)
+  }catch(e){
+    next(e)
+  }
+}
+
 exports.getNotifications = async(req, res, next)=>{
   try{
     var { device } = req

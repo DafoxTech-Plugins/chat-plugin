@@ -129,7 +129,7 @@
     }
 
     socket.on('chat', function(chat){
-      if($scope.contact && chat.mobile_device_id == $scope.contact.id){
+      if($(".conversation.device-"+chat.mobile_device_id+":visible").length){
         var exists = _.findIndex($scope.chats, function(c){ return c.id == chat.id }) >= 0
         if(exists) return
         $scope.chats.push(chat)
@@ -139,6 +139,7 @@
           if($(`.conversation.device-${_this.contact.id}`).is(":visible")){
             _this.contact.has_unread = false
           }
+          $(".device-"+chat.mobile_device_id+" .unread-indicator").hide()
         })
       }
     })

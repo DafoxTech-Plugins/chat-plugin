@@ -73,5 +73,6 @@ router.post('/chat-plugin/portal/chat',
 router.get('/chat-plugin/portal/mark-read', ipv4, device_reg, chats_ctrl.readAdminMessages)
 
 router.get('/client/notifications', devices_ctrl.getNotifications)
+router.get('/chat-plugin/unread-device-ids', devices_ctrl.getUnreadDeviceIds)
 
 module.exports = router

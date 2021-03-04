@@ -127,6 +127,7 @@ function array_move(arr, old_index, new_index) {
           $scope.$parent.has_unread = _.findIndex($scope.devices, function(d){ return d.has_unread }) >= 0;
         }, 500)
         audio.play();
+        $(".device-"+chat.mobile_device_id+" .unread-indicator").show()
       }
     })
   })
