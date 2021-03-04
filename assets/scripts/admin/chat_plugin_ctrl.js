@@ -25,8 +25,8 @@
     }
 
     $scope.focusChat = function(contact){
-      $(".device-"+contact.id+" .unread-indicator").hide()
       $scope.active_contact = contact
+      $(".device-"+contact.id+" .unread-indicator").hide()
     }
 
     $scope.closeChat = function(){
@@ -59,6 +59,9 @@
             var _device = contactScope.devices.find(function(d){
               return d.id == device.id
             })
+
+            if(!_device) _device = device
+
             contactScope.focusChat(_device)
           })
         }
