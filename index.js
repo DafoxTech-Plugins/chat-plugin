@@ -1,16 +1,15 @@
-'use strict'
-var config = require("./config")
-var router = require("./router")
-var models = require("./models")
-var { app } = require('../core')
+var config = require('./config')
+var router = require('./router')
+var models = require('./models')
+var { app } = require('plugin-core')
 
 module.exports = {
-  async init(id){
+  async init (id) {
     config.id = id
     await models.init()
     app.use(router)
   },
-  uninstall(){
+  uninstall () {
     // called with you uninstall the plugin
   }
 }

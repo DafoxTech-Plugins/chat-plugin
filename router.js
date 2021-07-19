@@ -1,6 +1,6 @@
 'use strict'
 
-var core = require('../core')
+var core = require('plugin-core')
 var { router, middlewares } = core
 var devices_ctrl = require('./controllers/devices_ctrl')
 var chats_ctrl = require('./controllers/chats_ctrl')

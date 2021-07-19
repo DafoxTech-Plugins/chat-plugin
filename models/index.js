@@ -1,26 +1,26 @@
 'use strict'
 
-var { dbi, machine_id } = require('../../core')
+var { dbi, machine_id } = require('plugin-core')
 var Chat = require('./chat')
 var MutedDevice = require('./muted_device')
 
 var model_files = {
   Chat,
-  MutedDevice,
+  MutedDevice
 }
 
 exports.init = async () => {
-  if(!dbi) return
+  if (!dbi) return
   var { sequelize, Sequelize } = dbi
   var db = await sequelize.getInstance()
 
   var keys = Object.keys(model_files)
-  for(var i = 0; i < keys.length; i++){
+  for (var i = 0; i < keys.length; i++) {
     var k = keys[i]
     dbi.models[k] = model_files[k](db, Sequelize)
-    try{
+    try {
       await dbi.models[k].sync({alter: true})
-    }catch(e){}
+    } catch (e) {}
   }
 
   var default_scope = {
@@ -28,10 +28,10 @@ exports.init = async () => {
   }
 
   dbi.models.Chat.addScope('default_scope', default_scope)
-  dbi.models.Chat.belongsTo( dbi.models.MobileDevice )
+  dbi.models.Chat.belongsTo(dbi.models.MobileDevice)
   dbi.models.MobileDevice.hasMany(dbi.models.Chat)
   dbi.models.MutedDevice.addScope('default_scope', default_scope)
-  dbi.models.MutedDevice.belongsTo( dbi.models.MobileDevice )
+  dbi.models.MutedDevice.belongsTo(dbi.models.MobileDevice)
 
   return dbi
 }
