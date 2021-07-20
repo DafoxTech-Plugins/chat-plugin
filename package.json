@@ -1,0 +1,25 @@
+{
+  "name": "chat-plugin",
+  "version": "1.0.12",
+  "description": "Chat Plugin for AdoPisoft Hotspot. You can now send messages/announcements to your customers. You can send one at a time or in bulk.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "python $APPDIR/python-scripts/plugin-postinstall.py $(basename \"$PWD\") $(PWD)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/adopisowifi/chat-plugin.git"
+  },
+  "keywords": [
+    "ado",
+    "chat",
+    "plugin"
+  ],
+  "author": "arnel.lenteria@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/adopisowifi/chat-plugin/issues"
+  },
+  "homepage": "https://bitbucket.org/adopisowifi/chat-plugin#readme"
+}

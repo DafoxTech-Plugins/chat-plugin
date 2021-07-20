@@ -329,9 +329,9 @@ function initChats(){
     })
   })
 
-  setTimeout(function(){
-    promptAppInstallation()
-  }, 3000)
+  // setTimeout(function(){
+  //   promptAppInstallation()
+  // }, 3000)
   
   setTimeout(function(){
     if(window.warning_sound && window.JSInterface){
