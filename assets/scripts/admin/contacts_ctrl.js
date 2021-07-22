@@ -16,7 +16,7 @@ function array_move(arr, old_index, new_index) {
 
   App.component('contacts', {
     controller: 'ContactsCtrl',
-    templateUrl: '/plugins/chat-plugin/views/admin/contacts.html'
+    templateUrl: '/public/plugins/chat-plugin/views/admin/contacts.html'
   })
   .controller('ContactsCtrl', function($scope, DevicesService, toastr, CatchHttpError, $timeout, ChatService, $ngConfirm, Socket) {
     var socket = Socket.getSocket()

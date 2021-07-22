@@ -5,7 +5,7 @@
 
   App.component('chats', {
     controller: 'ChatsCtrl',
-    templateUrl: '/plugins/chat-plugin/views/admin/chats.html',
+    templateUrl: '/public/plugins/chat-plugin/views/admin/chats.html',
     bindings: {
       contact: '='
     }
