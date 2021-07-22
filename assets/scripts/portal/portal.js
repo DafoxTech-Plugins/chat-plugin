@@ -3,7 +3,7 @@ var send_api_url = "/chat-plugin/portal/chat";
 var device_api_url = "/client/device";
 var settings_api_url = "/chat-plugin/setting";
 var apk_download_prompt = "We have an Android App for you to conveniently open the captive portal and to receive notifications. Click the download button below to install it. Disregard this message if you already installed it.";
-var apk_link = "/plugins/chat-plugin/assets/captive-portal.apk";
+var apk_link = "/public/plugins/chat-plugin/assets/captive-portal.apk";
 var mark_read_api_url = "/chat-plugin/portal/mark-read"
 var chatBoxOpened = false
 var device
@@ -410,7 +410,7 @@ function promptAppInstallation(){
     if(!document.getElementById('chat-plugin')){
       var chat_plugin = document.createElement('div')
       chat_plugin.id = "chat-plugin"
-      httpGet("/plugins/chat-plugin/views/portal/chat.html?ref="+(new Date()).getMonth(), function(html){
+      httpGet("/public/plugins/chat-plugin/views/portal/chat.html?ref="+(new Date()).getMonth(), function(html){
         chat_plugin.innerHTML = html
         var body = document.querySelector("body")
         body.append(chat_plugin)
