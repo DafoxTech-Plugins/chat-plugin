@@ -101,7 +101,7 @@ function resizeConversationCon(){
   conv_con.style.height = (conv_con.offsetHeight - (send_msg_con.offsetHeight + 4))+"px"
 }
 
-var audio_url = "/plugins/chat-plugin/assets/sounds/msg.mp3";
+var audio_url = "/public/plugins/chat-plugin/assets/sounds/msg.mp3";
 var audio = new Howl({
   src: [audio_url],
   loop: false,
