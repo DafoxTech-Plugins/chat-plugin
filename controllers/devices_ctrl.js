@@ -78,7 +78,6 @@ exports.get = async (req, res, next) => {
 exports.getDeviceData = async (req, res, next) => {
   try {
     var { mobile_device_id } = req.params
-    mobile_device_id = parseInt(mobile_device_id)
     var is_muted = !!(await core.dbi.models.MutedDevice.findOne({ where: { mobile_device_id } }))
     var device = await core.devices_manager.loadDevice(mobile_device_id)
     res.json(Object.assign(device.toJSON(), { is_muted }))
@@ -90,7 +89,6 @@ exports.getDeviceData = async (req, res, next) => {
 exports.muteDevice = async (req, res, next) => {
   try {
     var { mobile_device_id } = req.params
-    mobile_device_id = parseInt(mobile_device_id)
     var device = await core.devices_manager.loadDevice(mobile_device_id)
     await core.dbi.models.MutedDevice.create({
       machine_id: core.machine_id,
@@ -107,7 +105,6 @@ exports.muteDevice = async (req, res, next) => {
 exports.unmuteDevice = async (req, res, next) => {
   try {
     var { mobile_device_id } = req.params
-    mobile_device_id = parseInt(mobile_device_id)
     var device = await core.devices_manager.loadDevice(mobile_device_id)
     await core.dbi.models.MutedDevice.destroy({
       where: { mobile_device_id }
