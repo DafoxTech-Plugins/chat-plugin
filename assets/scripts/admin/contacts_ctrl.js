@@ -112,7 +112,7 @@ function array_move(arr, old_index, new_index) {
     audio.src = "/public/plugins/chat-plugin/assets/sounds/msg2.mp3";
     audio.load();
     socket.on('chat', function(chat){
-      if(!isNaN(chat.sender_id)){
+      if(chat.sender_id){
         var dIndex = _.findIndex($scope.devices, function(d){ return d.id == chat.sender_id })
         if(dIndex >= 0){
           var device = $scope.devices[dIndex]
