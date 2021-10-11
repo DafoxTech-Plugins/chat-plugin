@@ -1,16 +1,1 @@
-(function () {
-  'use strict';
-  var App = angular.module('Plugins')
-  .config(function($stateProvider) {
-    $stateProvider
-    .state('plugins.chat_plugin', {
-      templateUrl : "/public/plugins/chat-plugin/views/admin/settings.html",
-      controller: 'ChatPluginSettingsCtrl',
-      url: '/chat-plugin',
-      title: 'Chat Plugin',
-      sidebarMeta: {
-        order: 2,
-      },
-    });
-  });
-})();
+!function(){"use strict";angular.module("Plugins").config(function($stateProvider){$stateProvider.state("plugins.chat_plugin",{templateUrl:"/public/plugins/chat-plugin/views/admin/settings.html",controller:"ChatPluginSettingsCtrl",url:"/chat-plugin",title:"Chat Plugin",sidebarMeta:{order:2}})})}();
